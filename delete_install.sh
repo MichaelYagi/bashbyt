@@ -26,7 +26,7 @@ while IFS= read -r device_str; do
 done <<< "$devices_str"
 
 # Use API to push webp
-device_id="${device_array[0]}"
+device_id="${device_array[0]}" # Just get the first device
 url="https://api.tidbyt.com/v0/devices/$device_id/installations/$installation_id"
 echo "url: $url"
 curl_command="curl -X 'DELETE' '$url' --header \"$header_one\" --header \"$header_two\""
