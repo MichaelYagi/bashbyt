@@ -1,4 +1,4 @@
-Major work in progress. Bash scripts to deploy Tidbyt apps. You must build and install [pixlet](https://tidbyt.dev/docs/build/advanced-installation).
+Major work in progress. Bash scripts to deploy Tidbyt apps. You must build and install [pixlet](https://tidbyt.dev/docs/build/advanced-installation) from source in order to execute necessary pixlet commands.
 
 1. Create file in root directory `tidbyt.config` and update with api key `api_key=<api_key>`
 2. Create folder with .star Tidbyt script
