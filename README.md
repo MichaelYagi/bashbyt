@@ -7,3 +7,5 @@ Major work in progress. Bash scripts to deploy Tidbyt apps. You must build and i
 5. Execute using keyword `source`
 6. Execute in a loop using approriate ttl bucket
 7. Run `bash run_scripts.sh`
+
+To delete an installation, run script `bash delete_install.sh <installation_id>`
