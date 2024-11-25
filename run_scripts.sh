@@ -31,6 +31,7 @@ function create_loop() {
     do
         split_on_commas $cmds | while read item; do
             # Custom logic goes here
+            echo $item $ttl
             source $item $ttl
         done
         
