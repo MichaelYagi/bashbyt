@@ -10,6 +10,26 @@ function exit_script() {
     echo "Exiting run script"
 }
 
+function create_loop() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: $0 <ttl> <cmd>"
+        exit 1
+    fi
+
+    ttl=$1
+    cmd=$2
+
+    while true
+    do
+        # source $tech_news_run_cmd
+        source $cmd $ttl
+
+        echo "2m loop"
+
+        sleep $ttl
+    done
+}
+
 zero=0
 set -f
 
@@ -26,29 +46,14 @@ one_h_ttls=3600
 
 # Pass ttl in seconds
 # Generate webp file
-db_run_cmd="./db_characters/run_script.sh $two_m_ttls"
+db_run_cmd="./db_characters/run_script.sh"
 
 # ----------
-# tech_news_run_cmd="./api_text/tech_news/run_script.sh $two_m_ttls"
+# tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 
 # --------------------
-# Push to Tydbyt
-
-# 2 minute bucket
-two_m_loop() {
-    while true
-    do
-        # source $tech_news_run_cmd
-        source $db_run_cmd
-
-        echo "2m loop"
-
-        sleep $two_m_ttls
-    done
-}
-
-# Run in background
-two_m_loop &
+# Push to Tydbyt and run in background
+create_loop $two_m_ttls $db_run_cmd
 
 # ----------
 
