@@ -10,6 +10,14 @@ function exit_script() {
     echo "Exiting run script"
 }
 
+function split_on_commas() {
+    local IFS=,
+    local WORD_LIST=($1)
+    for word in "${WORD_LIST[@]}"; do
+        echo "$word"
+    done
+}
+
 function create_loop() {
     if [ "$#" -ne 2 ]; then
         echo "Usage: $0 <ttl> <cmd>"
@@ -17,13 +25,15 @@ function create_loop() {
     fi
 
     ttl=$1
-    cmd=$2
+    cmds=$2
 
     while true
     do
-        # source $tech_news_run_cmd
-        source $cmd $ttl
-
+        split_on_commas $cmds | while read item; do
+            # Custom logic goes here
+            source $item $ttl
+        done
+        
         echo "2m loop"
 
         sleep $ttl
@@ -49,10 +59,11 @@ one_h_ttls=3600
 db_run_cmd="./db_characters/run_script.sh"
 
 # ----------
-# tech_news_run_cmd="./api_text/tech_news/run_script.sh"
+tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 
 # --------------------
 # Push to Tydbyt and run in background
+# create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
 create_loop $two_m_ttls $db_run_cmd &
 
 # ----------
