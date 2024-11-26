@@ -59,6 +59,10 @@ fifteen_m_ttls=900
 thirty_m_ttls=1800
 # 1 hour
 one_h_ttls=3600
+# 3 hours
+three_h_ttls=10800
+# 6 hours
+six_h_ttls=21600
 # 12 hours
 twelve_h_ttls=43200
 # 24 hours
@@ -77,7 +81,7 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 # Multiple scripts in same ttl bucket example
 # create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
 create_loop $two_m_ttls $db_run_cmd &
-create_loop $twelve_h_ttls $tech_news_run_cmd &
+create_loop $three_h_ttls $tech_news_run_cmd &
 
 # ----------
 
