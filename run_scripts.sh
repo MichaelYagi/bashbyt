@@ -61,6 +61,7 @@ function create_loop() {
         done
         
         echo "$ttl second loop"
+        echo "---------------------"
 
         sleep $ttl
     done
