@@ -81,7 +81,7 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 # Multiple scripts in same ttl bucket example
 # create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
 create_loop $two_m_ttls $db_run_cmd &
-create_loop $three_h_ttls $tech_news_run_cmd &
+create_loop $one_h_ttls $tech_news_run_cmd &
 
 # ----------
 
