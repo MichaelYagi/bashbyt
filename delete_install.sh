@@ -25,7 +25,7 @@ if [ -z "${device_id}" ]; then
     fi
 fi
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -ne 1 ] && [ "$#" -ne 2 ]; then
     echo "Delete apps by installation ID"
     echo "Usage: $0 <installation_id>"
     echo "Current installations"
