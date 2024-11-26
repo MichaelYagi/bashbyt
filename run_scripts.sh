@@ -35,7 +35,7 @@ function create_loop() {
             source $item $ttl
         done
         
-        echo "2m loop"
+        echo "$ttl second loop"
 
         sleep $ttl
     done
@@ -52,6 +52,7 @@ two_m_ttls=120
 fifteen_m_ttls=900
 thirty_m_ttls=1800
 one_h_ttls=3600
+tf_h_ttls=86400
 
 # --------------------
 
@@ -64,8 +65,10 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 
 # --------------------
 # Push to Tydbyt and run in background
-create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
-# create_loop $two_m_ttls $db_run_cmd &
+# Multiple scripts in same ttl bucket
+# create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
+create_loop $two_m_ttls $db_run_cmd &
+create_loop $tf_h_ttls $tech_news_run_cmd &
 
 # ----------
 
