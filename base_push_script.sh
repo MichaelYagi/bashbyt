@@ -15,7 +15,7 @@ echo "installation_id: $installation_id"
 # api_key=$api_key
 # header_one="Authorization: Bearer $api_key"
 # header_two="Content-Type: application/json"
-# # Through API endpoint
+# # Through API endpoint - doesn't play full animation
 # url="https://api.tidbyt.com/v0/devices/$device_id/push"
 # b64=$(cat $path_to_webp | base64)
 # b64="${b64//$'\n'/}"
@@ -25,6 +25,6 @@ echo "installation_id: $installation_id"
 # curl_command="curl --header \"$header_one\" --header \"$header_two\" -v \"$url\" -d @/tmp/data.json"
 # eval $curl_command
 
-# Through Pixlet command doesn't play full animation
+# Through Pixlet command - doesn't play full animation
 pixlet_command="pixlet push --installation-id $installation_id \"$device_id\" $path_to_webp"
 eval $pixlet_command
