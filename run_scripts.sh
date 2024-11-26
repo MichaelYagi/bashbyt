@@ -64,7 +64,6 @@ tf_h_ttls=86400
 
 # --------------------
 
-# Pass ttl in seconds
 # Generate webp file
 db_run_cmd="./db_characters/run_script.sh"
 
@@ -72,8 +71,8 @@ db_run_cmd="./db_characters/run_script.sh"
 tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 
 # --------------------
-# Push to Tydbyt and run in background
-# Multiple scripts in same ttl bucket
+# Push to Tydbyt and run in background with ttl and run script commands
+# Multiple scripts in same ttl bucket example
 # create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
 create_loop $two_m_ttls $db_run_cmd &
 create_loop $tf_h_ttls $tech_news_run_cmd &
