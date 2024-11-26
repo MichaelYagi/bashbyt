@@ -45,13 +45,21 @@ zero=0
 set -f
 
 # Define ttl buckets
+# 5 seconds
 five_s_ttls=5
+# 20 seconds
 twenty_s_ttls=20
+# 30 seconds
 thirty_s_ttls=30
+# 2 minutes
 two_m_ttls=120
+# 15 minutes
 fifteen_m_ttls=900
+# 30 minutes
 thirty_m_ttls=1800
+# 1 hour
 one_h_ttls=3600
+# 24 hours
 tf_h_ttls=86400
 
 # --------------------
