@@ -1,5 +1,29 @@
 #!/bin/bash
 
+device_id=""
+
+if [ "$#" -eq 1 ]; then
+    device_id=$1
+fi
+
+if [ -z "${device_id}" ]; then
+
+    get_devices_command="pixlet devices"
+    devices_str=$(eval "$get_devices_command")
+    device_array=()
+
+    while IFS= read -r device_str; do
+        device_str_array=($device_str) # Strip device name
+        device_array+=(${device_str_array[0]})
+    done <<< "$devices_str"
+    device_id="${device_array[0]}" # Just get the first device
+
+    if [ -z "${device_id}" ]; then
+        echo "Device ID not detected"
+        exit
+    fi
+fi
+
 function exit_script() {
     job=`eval "jobs -p -r"`
     echo "Killing PID $job"
@@ -19,20 +43,21 @@ function split_on_commas() {
 }
 
 function create_loop() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: $0 <ttl> <cmd>"
+    if [ "$#" -ne 3 ]; then
+        echo "Usage: $0 <ttl> <cmd> <device_id>"
         exit 1
     fi
 
     ttl=$1
     cmds=$2
+    device_id=$3
 
     while true
     do
         split_on_commas $cmds | while read item; do
             # Custom logic goes here
-            echo $item $ttl
-            source $item $ttl
+            echo $item $ttl $device_id
+            source $item $ttl $device_id
         done
         
         echo "$ttl second loop"
@@ -80,8 +105,8 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 # Push to Tydbyt and run in background with ttl and run script commands
 # Multiple scripts in same ttl bucket example
 # create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
-create_loop $two_m_ttls $db_run_cmd &
-create_loop $one_h_ttls $tech_news_run_cmd &
+create_loop $two_m_ttls $db_run_cmd $device_id &
+create_loop $one_h_ttls $tech_news_run_cmd $device_id &
 
 # ----------
 
