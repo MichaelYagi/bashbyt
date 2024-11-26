@@ -29,9 +29,20 @@ done <<< "$devices_str"
 
 # Use API to push webp
 device_id="${device_array[0]}"
+
+# Through API endpoint
 url="https://api.tidbyt.com/v0/devices/$device_id/push"
 b64=$(cat $path_to_webp | base64)
 b64="${b64//$'\n'/}"
 b64="${b64//$''/}"
-curl_command="curl --header \"$header_one\" --header \"$header_two\" -v \"$url\" -d '{\"image\":\"$b64\",\"installationID\":\"$installation_id\",\"background\":true}'"
+
+# curl_command="curl --header \"$header_one\" --header \"$header_two\" -v \"$url\" -d '{\"image\":\"$b64\",\"installationID\":\"$installation_id\",\"background\":true}'"
+
+# Ensure data isn't too long for command
+echo "{\"installationID\": \"$installation_id\",\"background\":true,\"image\": \"$b64\"}" > /tmp/data.json
+curl_command="curl --header \"$header_one\" --header \"$header_two\" -v \"$url\" -d @/tmp/data.json"
 eval $curl_command
+
+# Through Pixlet command doesn't play full animation
+# pixlet_command="pixlet push --installation-id $installation_id \"$device_id\" $path_to_webp"
+# eval $pixlet_command
