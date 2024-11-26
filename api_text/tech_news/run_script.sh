@@ -8,7 +8,7 @@ if [ "$#" -ne 2 ]; then
 fi
 ttl_seconds=$1
 device_id=$2
-render_command="pixlet render api_text/api_text.star debug_output=False ttl_seconds=$ttl_seconds api_url='https://newsdata.io/api/1/latest?apikey=pub_55370ea8064d5ebb391519497a2999daa60d3&country=us&category=technology' request_headers="" base_url="" heading_response_path="results,\[rand1\],title" body_response_path="results,\[rand1\],description" image_response_path="results,\[rand1\],image_url" image_placement=2 heading_font_color="FFA500" body_font_color="FFFFFF""
+render_command="pixlet render api_text/api_text.star debug_output=False ttl_seconds=$ttl_seconds api_url='https://newsapi.org/v2/top-headlines?country=us&apiKey=2c78e3ed7a664255833b80391cbb902d' request_headers="" base_url="" heading_response_path="articles,\[rand1\],title" body_response_path="articles,\[rand1\],description" image_response_path="articles,\[rand1\],urlToImage" image_placement=2 heading_font_color="FFA500" body_font_color="FFFFFF""
 eval "$render_command"
 
 mv api_text/api_text.webp api_text/tech_news/tech_news.webp
