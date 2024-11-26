@@ -2,7 +2,7 @@ Major work in progress.
 
 Bash scripts to render and push Tidbyt apps on a schedule. You must install [pixlet](https://tidbyt.dev/docs/build/installing-pixlet).
 
-Quickstart by following step 1 below, then step 7.
+Quickstart by following step 1, then step 7 below.
 
 1. Create file in root directory `tidbyt.config` and update with api key `api_key=<api_key>`
 2. Create folder with .star Tidbyt script
