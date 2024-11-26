@@ -64,8 +64,8 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 
 # --------------------
 # Push to Tydbyt and run in background
-# create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
-create_loop $two_m_ttls $db_run_cmd &
+create_loop $two_m_ttls $db_run_cmd,$tech_news_run_cmd &
+# create_loop $two_m_ttls $db_run_cmd &
 
 # ----------
 
