@@ -109,21 +109,6 @@ tech_news_run_cmd="./api_text/tech_news/run_script.sh"
 create_loop $two_m_ttls $db_run_cmd $device_id &
 # create_loop $one_h_ttls $tech_news_run_cmd $device_id &
 
-# ----------
-
-# Test
-# test_loop() {
-#     while true
-#     do
-#         echo "test"
-#         sleep 2
-#         
-#     done
-# }
-
-# # Run in background
-# test_loop &
-
 # --------------------
 
 # Kill process when ctrl-c
