@@ -13,4 +13,5 @@ eval "$render_command"
 
 mv api_text/api_text.webp api_text/tech_news/tech_news.webp
 
+# Push webp, installationID and deviceID
 source ./base_push_script.sh "./api_text/tech_news/tech_news.webp" "technews" "$device_id"
